@@ -5,7 +5,7 @@ namespace App\Controllers;
 use MF\Controller\Action;
 use MF\Model\Container;
 
-class CarController extends Action
+class CartController extends Action
 {
     public function addItemInTheCar(): void
     {

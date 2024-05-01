@@ -16,7 +16,7 @@ class Routes extends Bootstrap
 
         $route['addItem'] = [
             'route' => '/add_item',
-            'controller' => 'CarController',
+            'controller' => 'CartController',
             'action' => 'addItemInTheCar'
         ];
 
