@@ -33,7 +33,7 @@
 <body>
     <div class="car">
         <span>quantidade: <?= $this->view->quantity ?></span>
-        <span>total: <?= $this->view->tot ?></span>
+        <span>total: <?= number_format($this->view->total, 2) ?></span>
     </div>
     
     <?php $this->content(); ?>

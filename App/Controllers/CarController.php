@@ -7,11 +7,12 @@ use MF\Model\Container;
 
 class CarController extends Action
 {
-    public function addItemToCar()
+    public function addItemInTheCar(): void
     {
         $car = Container::getModel('car');
-        $car->add($_GET['id'], $_GET['name'], $_GET['preco']);
+        $car->addItem($_GET['id'], $_GET['name'], $_GET['price']);
         
-        // $this->render('index');
+        $this->updateQuantityAndPriceInTheCar();
+        header('Location:/');
     }
 }
