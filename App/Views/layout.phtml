@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- <title></title> -->
+    <style>
+        .car {
+            height: 50px;
+            width: 150px;
+            border: 1px solid red;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            margin: 40px auto;
+        }
+
+        .produto {
+            width: 300px;
+            border: 1px solid green;
+            padding: 10px;
+        }
+
+        a{
+            text-decoration: none;
+            border: 1px solid green;
+            padding: 10px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="car">
+        <span>quantidade: <?= $this->view->quantity ?></span>
+        <span>total: <?= $this->view->tot ?></span>
+    </div>
+    
+    <?php $this->content(); ?>
+</body>
+</html>
