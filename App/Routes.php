@@ -20,6 +20,12 @@ class Routes extends Bootstrap
             'action' => 'addItemInTheCar'
         ];
 
+        $route['produto'] = [
+            'route' => '/produto',
+            'controller' => 'IndexController',
+            'action' => 'produto'
+        ];
+
         $route['sobre'] = [
             'route' => '/sobre',
             'controller' => 'IndexController',

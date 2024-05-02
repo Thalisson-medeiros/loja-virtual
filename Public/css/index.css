@@ -10,6 +10,7 @@
     --color3: #3e838c;
     --color4: #8ebdb6;
     --color5: #ece1c3;
+    --color6: #fff;
 
     font-family: CentraNube, system-ui, BlinkMacSystemFont, Helvetica Neue, arial, sans-serif;
     --font1: ;
@@ -115,6 +116,7 @@
     align-items: center;
     position: absolute;
     opacity: 0;
+    z-index: -1;
     transition: 1s;
 }
 
@@ -143,6 +145,7 @@
 
 .menu-active {
     opacity: 1;
+    z-index: 2;
     transition: 1s;
 }
 
@@ -248,6 +251,74 @@ main {
 
 /*---------------products*/
 
+.product {
+    height: 600px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.product-details {
+    height: 500px;
+    width: 800px;
+    color: var(--color1);
+    border: 1px solid red;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.product-principal {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: relative;
+    padding-bottom: 10px;
+}
+
+.product-principal > button {
+    border: none;
+    border: 1px solid var(--color3);
+    border-radius: 5px;
+    padding: 10px;
+    cursor: pointer;
+    color: var(--color6);
+    background-color: var(--color3);
+    position: absolute;
+    bottom: 0px;
+    right: 0px;
+    margin-bottom: 10px;
+}
+
+.product-img-large {
+    border-radius: 10px;
+}
+
+.aside-images {
+    height: 70%;
+    width: 20%; 
+    border: 1px solid red;   
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.aside-img {
+    height: 100px;
+    width: 100%;
+    border: 1px solid green;
+    cursor: pointer;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.aside-img > img {
+    height: 100%;
+    width: 100%;
+}
+
+/*---------------product*/
 footer {
     height: 50px;
     width: 100%;

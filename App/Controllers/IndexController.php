@@ -16,4 +16,9 @@ class IndexController extends Action
     {
         $this->render('sobre');
     }
+
+    public function produto()
+    {
+        $this->render('produto');
+    }
 }
