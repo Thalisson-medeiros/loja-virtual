@@ -14,6 +14,6 @@ class IndexController extends Action
 
     public function sobreNos()
     {
-        $this->render('sobre_nos');
+        $this->render('sobre');
     }
 }

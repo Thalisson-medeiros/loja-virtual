@@ -11,20 +11,43 @@
     <nav class="menu">
         <a class="btn-logo" href="/">Loja</a>
         <ul class="menu-items">
-            <li><a class="btn-menu" href="#">Inicio</a></li>
+            <li><a class="btn-menu" href="/">Inicio</a></li>
             <li><a class="btn-menu" href="#">Produtos</a></li>
             <li><a class="btn-menu" href="#">Contato</a></li>
-            <li><a class="btn-menu" href="#">Sobre</a></li>
-            <li>
-                <a class="cart" href="#">
-                    <i class="fa-solid fa-cart-shopping cart-icon"></i>
-                    <span class="cart-number"> <?= $this->view->quantity ?></span>
-                    <!-- <span>total: <?= number_format($this->view->total, 2) ?></span> -->
-                </a>
-            </li>
+            <li><a class="btn-menu" href="/sobre">Sobre</a></li>
         </ul>
+        <div class="menu-hidden-options">
+            <a class="cart" href="#">
+                <i class="fa-solid fa-cart-shopping cart-icon"></i>
+                <span class="cart-number"> <?= $this->view->quantity ?></span>
+                <!-- <span>total: <?= number_format($this->view->total, 2) ?></span> -->
+            </a>
+            <a class="icon-menu-hidden" onclick="openMenu()" href="#">
+                <i class="fa-solid fa-bars"></i>
+            </a>
+        </div>
     </nav>
     
+    <section class="menu-hidden">
+        <ul>
+            <li><a href="#">Inicio</a></li>
+            <li><a href="#">Produtos</a></li>
+            <li><a href="#">Contato</a></li>
+            <li><a href="#">Sobre</a></li>
+        </ul>
+    </section>
+
     <?php $this->content(); ?>
+
+    <footer>
+        <small>Desenvolvido por &copy;Tam - 2024</small>
+        <div>
+            <a class="icon-facebook" href="#"><i class="fa-brands fa-facebook"></i></a>
+            <a class="icon-x" href="#"><i class="fa-brands fa-x-twitter"></i></a>
+            <a class="icon-youtube" href="#"><i class="fa-brands fa-youtube"></i></a>
+        </div>
+        <small><strong>contato:</strong> (xx)0 00000000</small> 
+    </footer>
+    <script src="js/index.js"></script>
 </body>
 </html>

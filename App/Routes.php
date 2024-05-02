@@ -21,7 +21,7 @@ class Routes extends Bootstrap
         ];
 
         $route['sobre'] = [
-            'route' => '/sobre_nos',
+            'route' => '/sobre',
             'controller' => 'IndexController',
             'action' => 'sobreNos'
         ];
