@@ -20,10 +20,13 @@
     <h1 class="title-section">Mais vendidos</h1>
 
     <section class="products">
-        <a class="card" href="/produto">
-            <img src="img/BANNER-3.jpg" alt="">
-            <h2>balcão</h2>
-            <h3>20.00</h3>
-        </a>
+        <?foreach($this->view->allProducts as $key => $product){?>
+            
+            <a class="card" href="/produto?id=<?=$product['id']?>&produto=<?=$product['name_product']?>">
+                <img src="img/<?=$product['images']?>" alt="">
+                <h2><?=$product['name_product']?></h2>
+                <h3><?= number_format($product['price'], 2) ?></h3>
+            </a>
+        <?}?>
     </section>
 </main>

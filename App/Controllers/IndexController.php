@@ -9,6 +9,8 @@ class IndexController extends Action
 {
     public function index()
     {
+        $products = Container::getModel('products');
+        $this->view->allProducts = $products->getProducts();
         $this->render('index');
     }
 
@@ -19,6 +21,8 @@ class IndexController extends Action
 
     public function produto()
     {
+        $product = Container::getModel('products');
+        $this->view->product = $product->getProduct($_GET['id'], $_GET['produto']);
         $this->render('produto');
     }
 }

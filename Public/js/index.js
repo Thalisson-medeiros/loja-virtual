@@ -10,21 +10,13 @@ function closeMenu(){
     }
 }
 
-// //função para renderizar uma view sem recarregar a página atual
-
-// async function getView(view){
-//     try{
-//         const response = await fetch('/' + view.toLowerCase())
-//         if(response.ok){
-//             const view = await response.text()
-//             showView(view)
-//         }
-
-//     }catch(e){
-//         console.log(e)
-//     }
-// }
-
-// function showView(view){
-//     document.querySelector('body').append(view)
-// }
+async function addProductToCar(id){
+    try{
+        const response = await fetch('/add_item?id='+id)
+        const json = await response.json()
+        
+        console.log(json)
+    }catch(e){
+        console.log(e)
+    }
+}

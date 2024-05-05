@@ -14,19 +14,6 @@ abstract class Action
         //o carrinho inicia vazio
         $this->view->quantity = 0;
         $this->view->total = 0;
-        $this->updateQuantityAndPriceInTheCar();
-    }
-
-    //metodo para atualizar o valor e a quantidade no carrinho
-    protected function updateQuantityAndPriceInTheCar()
-    {
-        $car = Container::getModel('car');
-    
-        //id do usuario vem de uma session
-        $idUsuario = 5;
-
-        $this->view->total = $car->getTotal($idUsuario);
-        $this->view->quantity = $car->getQuantity($idUsuario);
     }
 
     protected function render(string $view, string $layout = 'layout'): void

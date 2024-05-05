@@ -3,20 +3,14 @@
 namespace App\Models;
 use MF\Model\Model;
 
-class Car extends Model 
+class Cart extends Model 
 {
-    public function addItem(string $id, string $name, string $price): void
+    public function addItem(string $id): void
     {
         try{
-            $sql = 'insert into tb_car
-            (id_produto, name, price)
-            values
-            (?, ?, ?)';
-
+            $sql = 'insert into tb_cart (id_product) values (?)';
             $stmt = $this->database->prepare($sql);
             $stmt->bindValue(1, $id);
-            $stmt->bindValue(2, $name);
-            $stmt->bindValue(3, $price);
             $stmt->execute();
 
         }catch(\PDOException $error){
@@ -27,8 +21,7 @@ class Car extends Model
     public function getTotal(string $id_user): float
     {
         try{
-            $sql = 'select price from tb_car where id_produto = ?';
-
+            $sql = 'select price from tb_cart where id_produto = ?';
             $stmt = $this->database->prepare($sql);
             $stmt->bindValue(1, $id_user);
             $stmt->execute();
@@ -47,8 +40,7 @@ class Car extends Model
     public function getQuantity(string $id_user): int
     {
         try{
-            $sql = 'select price from tb_car where id_produto = ?';
-
+            $sql = 'select price from tb_cart where id_produto = ?';
             $stmt = $this->database->prepare($sql);
             $stmt->bindValue(1, $id_user);
             $stmt->execute();
