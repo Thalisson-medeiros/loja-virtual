@@ -10,9 +10,9 @@ function closeMenu(){
     }
 }
 
-async function addProductToCar(id){
+async function addProductToCar(id, name, price, image){
     try{
-        const response = await fetch('/add_item?id='+id)
+        const response = await fetch(`/add_item?id=${id}&name_product=${name}&price=${price}&image=${image}`)
         const json = await response.json()
         
         console.log(json)

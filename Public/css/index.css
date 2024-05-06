@@ -277,6 +277,8 @@ main {
 }
 
 .product-img-large {
+    min-height: 300px;
+    min-width: 400px;
     margin-right: 20px;
     margin-bottom: 100px;
     display: block;
@@ -329,6 +331,7 @@ main {
 }
 
 .aside-img {
+    min-height: 50px;
     width: 100%;
     margin-bottom: 20px;
     /* border: 1px solid green; */

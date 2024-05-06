@@ -11,9 +11,6 @@ abstract class Action
     public function __construct()
     {
         $this->view = new \stdClass;
-        //o carrinho inicia vazio
-        $this->view->quantity = 0;
-        $this->view->total = 0;
     }
 
     protected function render(string $view, string $layout = 'layout'): void
