@@ -8,7 +8,7 @@ class Cart extends Model
     public function addItem(string $id, string $name_product, string $price, string $image): void
     {   
         try{
-            $quantity = $this->getQuantity();
+            $quantity = $this->getQuantity() + 1;
             $total = $this->getTotal($price);
 
             $sql = 'insert into tb_cart (id_product, name_product, price, image_product, quantity_products, total) 
@@ -53,7 +53,7 @@ class Cart extends Model
             $stmt = $this->database->prepare($sql);
             $stmt->execute();
 
-            return count($stmt->fetchAll(\PDO::FETCH_ASSOC)) + 1;
+            return count($stmt->fetchAll(\PDO::FETCH_ASSOC));
 
         }catch(\PDOException $error){
             echo '<p>'. $error->getMessage() . '</p>';

@@ -8,7 +8,7 @@ class Users extends Model
     public function getUser(): array
     {
         $query = '
-            select id, nome, email from tb_usuarios
+            select id_user, name, pass from tb_users
         ';
 
         $stmt = $this->database->prepare($query);

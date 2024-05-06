@@ -13,10 +13,26 @@ function closeMenu(){
 async function addProductToCar(id, name, price, image){
     try{
         const response = await fetch(`/add_item?id=${id}&name_product=${name}&price=${price}&image=${image}`)
-        const json = await response.json()
+        const responseJson = await response.json()
         
-        console.log(json)
+        if(responseJson.status == 'ok'){
+            updateCart()
+            alert('Produto Adicionado com Sucesso!')
+        }
     }catch(e){
         console.log(e)
     }
 }
+
+async function updateCart(){
+    try{
+        const response = await fetch('/updateCart')
+        const responseJson = await response.json()
+        
+        document.querySelector('.cart-number').innerHTML = responseJson.quantity
+    }catch(e){
+        console.log(e)
+    }
+}
+
+window.addEventListener('load', updateCart)

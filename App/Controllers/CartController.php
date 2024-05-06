@@ -18,4 +18,16 @@ class CartController extends Action
 
         echo json_encode($data);
     }
+
+    public function updateNumberOfItemsInTheCart(): void
+    {
+        $cart = Container::getModel('cart');
+        $quantity = $cart->getQuantity();
+        
+        $itemsInTheCart = array(
+            'quantity' => $quantity
+        );
+        
+        echo json_encode($itemsInTheCart);
+    }
 }
