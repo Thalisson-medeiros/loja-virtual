@@ -36,3 +36,6 @@ async function updateCart(){
 }
 
 window.addEventListener('load', updateCart)
+
+
+//implementar função para validar email

@@ -10,12 +10,18 @@ class AuthController extends Action
 {
     public function authenticateLogin(): void
     {
-        if(filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)){
+        $email = filter_var($_POST['email'], FILTER_VALIDATE_EMAIL);
+
+        //implementar um método em users para cadastrar usuario
+        //implementar um método para recuperar a senha e comparar aqui
+        $password = $_POST['password'];
+
+        if($email && $password) {
             
             $user = Container::getModel('users');
 
             foreach($user->getUsers() as $key => $user){
-                if($user['email'] == $_POST['email']){
+                if($user['email'] == $_POST['email'] && $_POST['password'] == $user['password']){
 
                     $_SESSION['name_user'] = $user['name'];
                     
@@ -23,8 +29,19 @@ class AuthController extends Action
                 }
             }
         }else{
-            echo 'email não válido!';
+            echo 'Email ou Senha inválido(s)';
         }
+    }
+
+    public function register(): void
+    {
+        $name  = $_POST['name'];
+        $email = $_POST['email'];
+        $password = $_POST['password'];
+
+        $user = Container::getModel('users')->register();
+        
+        //continuar daqui............
     }
 
     public function exit(): void
