@@ -5,11 +5,9 @@ use MF\Model\Model;
 
 class Users extends Model
 {
-    public function getUser(): array
+    public function getUsers(): array
     {
-        $query = '
-            select id_user, name, pass from tb_users
-        ';
+        $query = 'select id_user, name, pass, email from tb_users';
 
         $stmt = $this->database->prepare($query);
         $stmt->execute();

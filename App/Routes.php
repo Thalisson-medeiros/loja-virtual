@@ -14,6 +14,30 @@ class Routes extends Bootstrap
             'action' => 'index'
         ];
 
+        $route['produto'] = [
+            'route' => '/produto',
+            'controller' => 'IndexController',
+            'action' => 'produto'
+        ];
+
+        $route['sobre'] = [
+            'route' => '/sobre',
+            'controller' => 'IndexController',
+            'action' => 'sobreNos'
+        ];
+
+        $route['login'] = [
+            'route' => '/login',
+            'controller' => 'IndexController',
+            'action' => 'login'
+        ];
+
+        $route['authenticateLogin'] = [
+            'route' => '/authLogin',
+            'controller' => 'AuthController',
+            'action' => 'authenticateLogin'
+        ];
+
         $route['addItem'] = [
             'route' => '/add_item',
             'controller' => 'CartController',
@@ -26,16 +50,10 @@ class Routes extends Bootstrap
             'action' => 'updateNumberOfItemsInTheCart'
         ];
 
-        $route['produto'] = [
-            'route' => '/produto',
-            'controller' => 'IndexController',
-            'action' => 'produto'
-        ];
-
-        $route['sobre'] = [
-            'route' => '/sobre',
-            'controller' => 'IndexController',
-            'action' => 'sobreNos'
+        $route['exit'] = [
+            'route' => '/sair',
+            'controller' => 'AuthController',
+            'action' => 'exit'
         ];
 
         $this->setRoutes($route);

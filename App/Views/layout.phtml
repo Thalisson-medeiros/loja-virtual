@@ -1,3 +1,11 @@
+<?php
+    session_start();
+
+    if(isset($_SESSION['name_user'])){
+        echo $_SESSION['name_user'];
+    };
+?>
+
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -15,12 +23,16 @@
             <li><a class="btn-menu" href="/produto">Produtos</a></li>
             <li><a class="btn-menu" href="#">Contato</a></li>
             <li><a class="btn-menu" href="/sobre">Sobre</a></li>
+
+            <? if(isset($_SESSION['name_user'])){?>
+                <li><a class="btn-menu" href="/sair">Sair</a></li>
+            <?}?>
+
         </ul>
         <div class="menu-hidden-options">
-            <a class="cart" href="#">
+            <a class="cart" href="/login">
                 <i class="fa-solid fa-cart-shopping cart-icon"></i>
                 <span class="cart-number">0</span>
-                <!-- <span>total: <?= number_format($this->view->total, 2) ?></span> -->
             </a>
             <a class="icon-menu-hidden" onclick="openMenu()" href="#">
                 <i class="fa-solid fa-bars"></i>
