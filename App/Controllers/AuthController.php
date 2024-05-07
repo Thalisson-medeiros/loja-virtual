@@ -1,6 +1,8 @@
 <?php
 
 namespace App\Controllers;
+
+use Exception;
 use MF\Controller\Action;
 use MF\Model\Container;
 
@@ -10,38 +12,40 @@ class AuthController extends Action
 {
     public function authenticateLogin(): void
     {
-        $email = filter_var($_POST['email'], FILTER_VALIDATE_EMAIL);
+        //consertar o erro do hash aqui =============================
+        $email    = filter_var($_POST['email'], FILTER_VALIDATE_EMAIL);
+        $padrao = '/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*()_+{}\[\]:;<>,.?\/~\\\\|\-]).{8,}$/';
 
-        //implementar um método em users para cadastrar usuario
-        //implementar um método para recuperar a senha e comparar aqui
-        $password = $_POST['password'];
+        if($email !== false && preg_match($padrao, $_POST['password'])){
 
-        if($email && $password) {
-            
-            $user = Container::getModel('users');
+            $password   = password_hash($_POST['password'], PASSWORD_DEFAULT);
+            $user       = Container::getModel('users');
+            $verifyUser = $user->verifyUserExists($email, $password);
 
-            foreach($user->getUsers() as $key => $user){
-                if($user['email'] == $_POST['email'] && $_POST['password'] == $user['password']){
-
-                    $_SESSION['name_user'] = $user['name'];
-                    
-                    header('Location:/');
-                }
+            if($verifyUser !== false) {
+                $_SESSION['name_user'] = $verifyUser['name'];
+                header('Location:/');
+            }else{
+                echo 'Usuário não encontrado';
             }
         }else{
-            echo 'Email ou Senha inválido(s)';
+            echo 'Email ou senha Inválido(s)';
         }
     }
 
-    public function register(): void
+    public function addRegister(): void
     {
         $name  = $_POST['name'];
-        $email = $_POST['email'];
-        $password = $_POST['password'];
+        $email_verify  = filter_var($_POST['email'], FILTER_VALIDATE_EMAIL);
+        $password_hash = password_hash($_POST['password'], PASSWORD_DEFAULT);
 
-        $user = Container::getModel('users')->register();
-        
-        //continuar daqui............
+        if($password_hash !== false && $email_verify !== false && !empty($name)){
+            Container::getModel('users')->newUser($name, $email_verify, $password_hash);
+            header('Location:/cadastro');
+            
+        }else{
+            header('Location:/cadastro?erro=1');
+        }
     }
 
     public function exit(): void

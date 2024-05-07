@@ -32,10 +32,16 @@ class Routes extends Bootstrap
             'action' => 'login'
         ];
 
-        $route['register'] = [
+        $route['addRegister'] = [
+            'route' => '/addRegister',
+            'controller' => 'authController',
+            'action' => 'addRegister'
+        ];
+
+        $route['cadastro'] = [
             'route' => '/cadastro',
-            'controller' => 'AuthController',
-            'action' => 'register'
+            'controller' => 'IndexController',
+            'action' => 'cadastro'
         ];
 
         $route['authenticateLogin'] = [

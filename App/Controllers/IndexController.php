@@ -30,4 +30,9 @@ class IndexController extends Action
     {
         $this->render('login');
     }
+
+    public function cadastro(): void
+    {
+        $this->render('cadastro');
+    }
 }
