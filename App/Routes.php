@@ -35,7 +35,7 @@ class Routes extends Bootstrap
         $route['addRegister'] = [
             'route' => '/addRegister',
             'controller' => 'authController',
-            'action' => 'addRegister'
+            'action' => 'register'
         ];
 
         $route['cadastro'] = [
@@ -44,10 +44,10 @@ class Routes extends Bootstrap
             'action' => 'cadastro'
         ];
 
-        $route['authenticateLogin'] = [
+        $route['authenticate'] = [
             'route' => '/authLogin',
             'controller' => 'AuthController',
-            'action' => 'authenticateLogin'
+            'action' => 'login'
         ];
 
         $route['addItem'] = [

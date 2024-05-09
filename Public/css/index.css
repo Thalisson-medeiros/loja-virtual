@@ -407,6 +407,21 @@ input.btn-form:hover {
     background-color: var(--color3);
 }
 /*----------------login*/
+
+.section-form-register {
+    height: 600px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.form-register {
+    height: 500px;
+    width: 400px;
+    border: 1px solid var(--color3);
+}
+/*------------------register*/
 footer {
     height: 50px;
     width: 100%;

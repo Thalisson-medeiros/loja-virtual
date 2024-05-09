@@ -2,7 +2,6 @@
 
 namespace App\Controllers;
 
-use Exception;
 use MF\Controller\Action;
 use MF\Model\Container;
 
@@ -10,47 +9,49 @@ session_start();
 
 class AuthController extends Action
 {
-    public function authenticateLogin(): void
+    public function login(): void
     {
-        //consertar o erro do hash aqui =============================
-        $email    = filter_var($_POST['email'], FILTER_VALIDATE_EMAIL);
-        $padrao = '/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*()_+{}\[\]:;<>,.?\/~\\\\|\-]).{8,}$/';
+        $user = Container::getModel('users');
+        $verifiedUser = $user->authenticateLogin($_POST['email'], $_POST['password']);
 
-        if($email !== false && preg_match($padrao, $_POST['password'])){
+        $login = match($verifiedUser){
+            1 => 'Campo email Inválido',
+            2 => 'Senha Deve conter: letras maiúsculas , minúsculas , caracteres especiais ex: * - ! e ter no minimo 8 caracteres',
+            3 => 'Usuário não encontrado',
+            default => 'ok'
+        };
 
-            $password   = password_hash($_POST['password'], PASSWORD_DEFAULT);
-            $user       = Container::getModel('users');
-            $verifyUser = $user->verifyUserExists($email, $password);
-
-            if($verifyUser !== false) {
-                $_SESSION['name_user'] = $verifyUser['name'];
-                header('Location:/');
-            }else{
-                echo 'Usuário não encontrado';
-            }
+        if($login === 'ok'){
+            $_SESSION['username'] = $verifiedUser;
         }else{
-            echo 'Email ou senha Inválido(s)';
+            header('Location:/login?erro='.$login);
         }
     }
 
-    public function addRegister(): void
+    public function register(): void
     {
-        $name  = $_POST['name'];
-        $email_verify  = filter_var($_POST['email'], FILTER_VALIDATE_EMAIL);
-        $password_hash = password_hash($_POST['password'], PASSWORD_DEFAULT);
+        $user = Container::getModel('users');
+        $verifyRegister = $user->newUser($_POST['name'], $_POST['email'], $_POST['password']);
+        
+        $register = match($verifyRegister){
+            1 => 'Campo email Inválido',
+            2 => 'Senha Deve conter: letras maiúsculas , minúsculas , caracteres especiais ex: * - ! e ter no minimo 8 caracteres',
+            3 => 'Campo nome não pode estar Vazio e deve ter no minimo 3 caracteres.',
+            default => 'ok'
+        };
 
-        if($password_hash !== false && $email_verify !== false && !empty($name)){
-            Container::getModel('users')->newUser($name, $email_verify, $password_hash);
-            header('Location:/cadastro');
-            
+        if($register === 'ok'){
+            header('Location:/');
         }else{
-            header('Location:/cadastro?erro=1');
+            header('Location:/cadastro?erro='.$register);
         }
     }
 
     public function exit(): void
     {
+
         session_destroy();
         header('Location:/');
+   
     }
 }
