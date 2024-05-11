@@ -9,20 +9,16 @@ class Cart extends Model
     {   
         try{
 
-            $quantity = $this->getQuantity() + 1;
-            $total = $this->getTotal($price);
-
-            $sql = 'insert into tb_cart (id_product, name_product, price, image_product, quantity_products, total, id_user) 	
+            $sql = 'insert into tb_cart 
+            (id_product, name_product, price, image_product, id_user) 	
             values 
-            (?,?,?,?,?,?,?)';
+            (?,?,?,?,?)';
             $stmt = $this->database->prepare($sql);
             $stmt->bindValue(1, $id);
             $stmt->bindValue(2, $name_product);
             $stmt->bindValue(3, $price);
             $stmt->bindValue(4, $image);
-            $stmt->bindValue(5, $quantity);
-            $stmt->bindValue(6, $total);
-            $stmt->bindValue(7, $user);
+            $stmt->bindValue(5, $user);
             $stmt->execute();
 
         }catch(\PDOException $error){
@@ -30,11 +26,11 @@ class Cart extends Model
         }
     }
 
-    public function remove(string $id): bool
+    public function removeItems(string $id): bool | null
     {
         try{
 
-            $query = 'delete id_product from tb_cart where id_product = ?';
+            $query = 'delete from tb_cart where id = ?';
             $stmt = $this->database->prepare($query);
             $stmt->bindValue(1, $id);
             $stmt->execute();
@@ -48,8 +44,8 @@ class Cart extends Model
     public function getItems(string $id_user): array
     {
         try{
-            $sql = 'select id_product, name_product, price, image_product, quantity_products, total from tb_cart where id_user = ?';
 
+            $sql = 'select id_product, name_product, price, image_product from tb_cart where id_user = ?';
             $stmt = $this->database->prepare($sql);
             $stmt->bindValue(1, $id_user);
             $stmt->execute();
@@ -60,7 +56,7 @@ class Cart extends Model
         }
     }
 
-    public function getTotal(float $price): float
+    public function getTotal(): float
     {
         try{
 
@@ -68,7 +64,7 @@ class Cart extends Model
             $stmt = $this->database->prepare($sql);
             $stmt->execute();
 
-            $total = $price;
+            $total = 0;
             foreach ($stmt->fetchAll(\PDO::FETCH_ASSOC) as $key => $item) {
                 $total += $item['price'];
             }
@@ -79,18 +75,18 @@ class Cart extends Model
         }
     }
 
-    public function getQuantity(): int
+    public function getQuantity(string $id): int | null
     {
         try{
-
-            $sql = 'select * from tb_cart';
+            
+            $sql = 'select * from tb_cart where id_user = ?';
             $stmt = $this->database->prepare($sql);
+            $stmt->bindValue(1, $id);
             $stmt->execute();
-
             return count($stmt->fetchAll(\PDO::FETCH_ASSOC));
 
         }catch(\PDOException $error){
-            echo '<p>'. $error->getMessage() . '</p>';
+            return null;
         }
     }
 }

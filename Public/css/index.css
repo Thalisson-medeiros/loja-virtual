@@ -444,6 +444,17 @@ td, th {
     text-align: center;
 }
 
+.decrease-quantity, .increment-quantity {
+    /* background-color: yellow; */
+    cursor: pointer;
+    padding: 0px 10px;
+    font-size: 1.5em;
+}
+
+.decrease-quantity:hover, .increment-quantity:hover {
+    color: var(--color4);
+}
+
 .cart-container > div {
     height: 100px;
     width: 100%;

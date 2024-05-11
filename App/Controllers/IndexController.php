@@ -38,7 +38,6 @@ class IndexController extends Action
 
     public function cart(): void
     {
-        session_start();
         $cart = Container::getModel('cart');
         $this->view->cartItems = $cart->getItems($_SESSION['id']);
         $this->render('carrinho');

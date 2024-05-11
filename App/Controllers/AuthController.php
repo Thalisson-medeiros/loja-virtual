@@ -12,9 +12,6 @@ class AuthController extends Action
         $user = Container::getModel('users');
         $verifiedUser = $user->authenticateLogin($_POST['email'], $_POST['password']);
 
-        echo '<pre>';
-        print_r($verifiedUser);
-        echo '</pre>';
         $login = match($verifiedUser){
             1 => 'Campo email Inválido',
             2 => 'Senha Deve conter: letras maiúsculas , minúsculas , caracteres especiais ex: * - ! e ter no minimo 8 caracteres',
@@ -23,8 +20,6 @@ class AuthController extends Action
         };
 
         if($login === 'ok'){
-            session_start();
-            
             foreach($verifiedUser as $key => $data){
                 $_SESSION['username'] = $data['name'];
                 $_SESSION['id']       = $data['id_user'];

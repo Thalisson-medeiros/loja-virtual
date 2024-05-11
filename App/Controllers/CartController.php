@@ -19,6 +19,7 @@ class CartController extends Action
         echo json_encode($data);
     }
 
+    //passar o id da primary key
     public function removeItem(): void
     {
         $cart = Container::getModel('cart');
@@ -31,15 +32,20 @@ class CartController extends Action
         echo json_encode($response);
     }
 
-    public function updateNumberOfItemsInTheCart(): void
+    public function updateCart(): void
     {
+        //verificando se o usuario esta logado ou não
+        $this->validateLogin();
+
         $cart = Container::getModel('cart');
-        $quantity = $cart->getQuantity();
+        $quantity = $cart->getQuantity($_SESSION['id']);
+
+        if($quantity !== null){
+            $response = ['status' => 'ok', 'quantity' => $quantity];
+        }else{
+            $response = ['status' => 'error'];
+        }
         
-        $itemsInTheCart = array(
-            'quantity' => $quantity
-        );
-        
-        echo json_encode($itemsInTheCart);
+        echo json_encode($response);
     }
 }
