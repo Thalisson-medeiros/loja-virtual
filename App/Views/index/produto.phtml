@@ -17,7 +17,7 @@
                     $product = $this->view->product
                 ?>
 
-                <button onclick="addProductToCar(<?=$product['id']?>, '<?=$product['name_product']?>', <?=$product['price']?>, '<?=$product['images']?>')">Adicionar ao carrinho</button>
+                <button onclick="addProductToCar(<?=$product['id']?>, '<?=$product['name_product']?>', <?=$product['price']?>, '<?=$product['images']?>', <?=$_SESSION['id']?>)">Adicionar ao carrinho</button>
             </div>
         </div>
     </section>

@@ -10,15 +10,16 @@ function closeMenu(){
     }
 }
 
-async function addProductToCar(id, name, price, image){
+async function addProductToCar(id, name, price, image, user){
     try{
-        const response = await fetch(`/add_item?id=${id}&name_product=${name}&price=${price}&image=${image}`)
+        const response = await fetch(`/add_item?id=${id}&name_product=${name}&price=${price}&image=${image}&user=${user}`)
         const responseJson = await response.json()
         
         if(responseJson.status == 'ok'){
             updateCart()
             alert('Produto Adicionado com Sucesso!')
         }
+
     }catch(e){
         console.log(e)
     }

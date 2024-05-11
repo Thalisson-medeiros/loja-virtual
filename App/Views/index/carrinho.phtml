@@ -1,0 +1,29 @@
+<?php 
+    echo '<pre>';
+    print_r($this->view->cartItems);
+    echo '</pre>';
+?>
+<main class="cart-container">
+    <table class="table-cart">
+        <thead>
+            <th>produto</th>
+            <th>preco</th>
+            <th>quantidade</th>
+        </thead>
+        <tbody>
+            <tr>
+                <td>mesa</td>
+                <td>100.00</td>
+                <td> 
+                    <span>-</span> 1 <span>+</span>
+                </td>
+                <td>
+                    <a href="#" class="btn-table-remove">remover</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <div>
+        <a href="#" class="btn-table-cart">Finalizar compra</a>
+    </div>
+</main>

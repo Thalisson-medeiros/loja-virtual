@@ -35,4 +35,12 @@ class IndexController extends Action
     {
         $this->render('cadastro');
     }
+
+    public function cart(): void
+    {
+        session_start();
+        $cart = Container::getModel('cart');
+        $this->view->cartItems = $cart->getItems($_SESSION['id']);
+        $this->render('carrinho');
+    }
 }

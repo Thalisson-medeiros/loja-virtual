@@ -62,6 +62,18 @@ class Routes extends Bootstrap
             'action' => 'updateNumberOfItemsInTheCart'
         ];
 
+        $route['removeItemInTheCart'] = [
+            'route' => '/removeItem',
+            'controller' => 'CartController',
+            'action' => 'removeItem'
+        ];
+
+        $route['cart'] =[
+            'route' => '/Carrinho',
+            'controller' => 'IndexController',
+            'action' => 'cart'
+        ];
+
         $route['exit'] = [
             'route' => '/sair',
             'controller' => 'AuthController',
