@@ -32,6 +32,8 @@ async function updateCart(){
         
         if(responseJson.status == 'ok'){
             document.querySelector('.cart-number').innerHTML = responseJson.quantity
+            console.log(quantidade)
+
         }else{
             console.log('ops! Houve um erro...')
         }

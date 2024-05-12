@@ -38,6 +38,7 @@ class IndexController extends Action
 
     public function cart(): void
     {
+        $this->validateLogin();
         $cart = Container::getModel('cart');
         $this->view->cartItems = $cart->getItems($_SESSION['id']);
         $this->render('carrinho');

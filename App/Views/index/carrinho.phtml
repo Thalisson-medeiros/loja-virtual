@@ -1,8 +1,23 @@
-<?php 
+<?php
+
+    //pega a quantidade de vezes que um item aparece no array que vem do banco
+    $quantityItems = array_column($this->view->cartItems, 'id_product');
+    $quantityItems = array_count_values($quantityItems);
+
+    //guarda os dados para não repeti-los
+    $array = [];
+
+    foreach($this->view->cartItems as $key => $product){
+        if(!in_array($product, $array)){
+            $array[] = $product;
+        }
+    }
+
     echo '<pre>';
     print_r($this->view->cartItems);
     echo '</pre>';
 ?>
+
 <main class="cart-container">
     <table class="table-cart">
         <thead>
@@ -11,7 +26,28 @@
             <th>quantidade</th>
         </thead>
         <tbody>
-             
+            <? foreach ($array as $key => $product) { ?>
+            
+                <tr>
+                    <td><?= $product['name_product'] ?></td>
+                    <td><?= $product['price'] ?></td>
+
+                    <? foreach ($quantityItems as $id_product => $quantity) { ?>
+                        
+                        <? if($product['id_product'] == $id_product) { ?>
+                            
+                            <td>
+                                <span class="decrease-quantity" >-</span>
+                                <?= $quantity ?>
+                                <span class="increment-quantity" onclick="addProductToCar(<?= $product['id_product'] ?>, '<?= $product['name_product'] ?>', <?= $product['price'] ?>, '<?= $product['image_product'] ?>', '<?= $_SESSION['id'] ?>')">+</span>
+                            </td>
+
+                        <? } ?>
+                    <? } ?>
+
+                    <td><button class="btn-table-remove">remover</button></td>
+                </tr>
+            <? } ?>
         </tbody>
     </table>
     <div>

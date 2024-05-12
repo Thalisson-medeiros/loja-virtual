@@ -41,7 +41,7 @@ class CartController extends Action
         $quantity = $cart->getQuantity($_SESSION['id']);
 
         if($quantity !== null){
-            $response = ['status' => 'ok', 'quantity' => $quantity];
+            $response = ['status' => 'ok', 'quantity' => $quantity, 'array' => $cart->getItems($_SESSION['id'])];
         }else{
             $response = ['status' => 'error'];
         }
